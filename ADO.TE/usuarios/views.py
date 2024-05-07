@@ -8,7 +8,7 @@ from django.contrib import auth
 def login(request):
     if request.method =="GET":
         if request.user.is_authenticated:
-            return HttpResponse('Plataforma')
+            return redirect('/divulgar/novo_pet/')
         return render(request, 'login.html')
     
     if request.method =="POST":
@@ -23,7 +23,7 @@ def login(request):
 
         if usuario:
             auth.login(request, usuario)
-            return HttpResponse('Plataforma')
+            return redirect('/divulgar/novo_pet/')
         
         else:
             messages.add_message(request, constants.WARNING, 'Credenciais inválidas.')
@@ -35,7 +35,7 @@ def login(request):
 def cadastro(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            return HttpResponse('Plataforma')
+            return redirect('/divulgar/novo_pet/')
         return render(request, 'cadastro.html')
     
     if request.method == "POST":

@@ -41,8 +41,25 @@ def novo_pet(request):
             pet.tags.add(tag)
         
         pet.save()
-
+        messages.add_message(request,constants.INFO,'Novo Pet cadastrado!')
         tags = Tag.objects.all()
         racas = Raca.objects.all()
-        return render(request, 'novo_pet.html',{'tags':tags, 'racas':racas})
+        return redirect('/divulgar/seus_pets/')
 
+
+def seus_pets(request):
+    if request.method =="GET":
+        pets = Pet.objects.filter(usuario = request.user)
+        return render(request,'seus_pets.html',{'pets':pets})
+    
+
+def remover_pet(request, id):
+    pet = Pet.objects.get(id = id)
+    if pet.usuario == request.user:
+        pet.delete()
+        messages.add_message(request,constants.SUCCESS,'Pet removido com sucesso!')
+        return redirect('/divulgar/seus_pets/')
+    
+    else:
+        messages.add_message(request,constants.ERROR,'Esse Pet não pertence a você.')
+        return redirect('/divulgar/seus_pets/')
