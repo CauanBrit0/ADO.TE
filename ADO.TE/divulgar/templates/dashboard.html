@@ -16,8 +16,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 bg-side sidebar">
+                    <img src="{% static 'usuarios/img/logo_adote.png' %}" width="50%"><span class="font-logo"></span>
                     <h2>ADO.TE</h2>
                     <hr>
+                    <a class="nav-link" href="{% url 'novo_pet' %}">DIVULGAR PET</a>
+                    <hr>
+                    <a class="nav-link" href="{% url 'seus_pets' %}">SEUS PETS</a>
+                    <hr>
+                    <a class="nav-link" href="{% url 'dashboard' %}">DASHBOARD</a>
+                    <hr>
+                    <a class="nav-link" href="{% url 'listar_pets' %}">LISTA DE PETS P/ ADOÇÃO</a>
+                    <hr>
+                    <a class="nav-link" href="{% url 'sair' %}">SAIR</a>
                    
                     
                 </div>
@@ -45,7 +55,7 @@
             const data = {
                 labels: data_adocoes['labels'],
                 datasets: [{
-                label: 'Peso paciente',
+                label: 'Adoções',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: data_adocoes['qtd_adocoes'],
